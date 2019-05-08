@@ -1,3 +1,3 @@
-const SignUp = require('./auth');
+const Auth = require('./auth');
 
-module.exports = [SignUp];
+module.exports = [Auth];

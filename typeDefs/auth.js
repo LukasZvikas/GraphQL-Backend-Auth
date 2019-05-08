@@ -9,7 +9,7 @@ module.exports = `
   }
 
   type Query {
-    user: [User]
+    getUser(email: String!): User!
   }
 
   type Mutation {

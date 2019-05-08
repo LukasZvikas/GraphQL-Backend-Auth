@@ -1,12 +1,11 @@
-const Auth = require('./auth');
+const AuthMutations = require('./auth/mutations');
+const AuthQueries = require('./auth/queries');
 
 module.exports = {
   Query: {
-    user: (_, args, params) => {
-      console.log('args', args, 'params', params);
-    },
+    ...AuthQueries,
   },
   Mutation: {
-    ...Auth,
+    ...AuthMutations,
   },
 };
