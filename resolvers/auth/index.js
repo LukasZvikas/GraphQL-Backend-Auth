@@ -1,4 +1,4 @@
-const Auth = require('../models/auth');
+const Auth = require('../../models/auth');
 
 module.exports = {
   signUp: async (_, { email, password }) => {
@@ -21,7 +21,7 @@ module.exports = {
         return savedUser;
       }
     });
-    console.log('result', result);
+
     return result;
   },
 };
