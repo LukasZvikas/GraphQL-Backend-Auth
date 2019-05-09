@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const Auth = require('../../models/auth');
+const { EXISTING_USER_ERROR } = require('../../errorTypes');
 
 
 module.exports = {
@@ -7,7 +8,7 @@ module.exports = {
     try {
       const user = await Auth.findOne({ email });
       if (user) {
-        throw new Error('A user already exists');
+        throw new Error(EXISTING_USER_ERROR);
       } else {
         const hashedPassword = await bcrypt.hash(password, 12);
 

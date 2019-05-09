@@ -8,8 +8,14 @@ module.exports = `
     updatedAt: String
   }
 
+  type AuthType {
+    userId: String! 
+    token: String!
+  }
+
   type Query {
     getUser(email: String!): User!
+    loginUser(email: String!, password: String!): AuthType
   }
 
   type Mutation {
