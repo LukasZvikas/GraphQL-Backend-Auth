@@ -1,11 +1,10 @@
 const assert = require('assert');
-const Auth = require('../models/auth');
 const AuthMutations = require('../resolvers/auth/mutations');
 const AuthQueries = require('../resolvers/auth/queries');
 const { INVALID_CREDENTIALS_ERROR } = require('../errorTypes');
 
 
-describe('SignUp', () => {
+describe('SignUp/Login', () => {
   const userDetails = { email: 'test@gmail.com', password: 'password' };
 
 
@@ -35,20 +34,18 @@ describe('SignUp', () => {
 });
 
 
-describe('Get User', () => {
-  let user;
-  const userDetails = { email: 'test@gmail.com', password: 'password' };
-  beforeEach((done) => {
-    user = new Auth(userDetails);
-    user.save().then(() => {
-      done();
-    });
-  });
-  it('finds a user', (done) => {
-    AuthQueries.getUser(null, { email: userDetails.email }).then((result) => {
-      // eslint-disable-next-line no-underscore-dangle
-      assert(result._id !== user._id);
-      done();
-    });
-  });
-});
+// describe('Get User', () => {
+//   let user;
+//   const userDetails = { email: 'test@gmail.com', password: 'password' };
+//   beforeEach((done) => {
+//     user = new Auth(userDetails);
+//     user.save().then(() => {
+//       done();
+//     });
+//   });
+//   it('finds a user', (done) => {
+//     AuthQueries.loginUser(null, { email: 'test@gmail.com', password: 'password' }).then((res) => {
+//       console.log('RES', res);
+//     });
+//   });
+// });

@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt');
 const Auth = require('../../models/auth');
 const { EXISTING_USER_ERROR } = require('../../errorTypes');
-
+const { sendEmail } = require('../../utilities/sendEmail');
+const confirmEmail = require('../../utilities/emailTemplates/confirmEmail');
 
 module.exports = {
   signUp: async (_, { email, password }) => {
@@ -16,6 +17,10 @@ module.exports = {
           email, password: hashedPassword,
         });
         const savedUser = await newUser.save();
+
+        const { subject, body } = confirmEmail('gmail.com');
+
+        sendEmail({ subject, body, receiver: email });
 
         return savedUser;
       }

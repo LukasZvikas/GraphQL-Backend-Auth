@@ -1,11 +1,12 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { JWT_SECRET } = require('../../config/keys');
-const { INVALID_CREDENTIALS_ERROR, FETCH_USER_ERROR } = require('../../config/keys');
+const { INVALID_CREDENTIALS_ERROR, FETCH_USER_ERROR, NO_TOKEN_ERROR } = require('../../errorTypes');
 const Auth = require('../../models/auth');
 
 module.exports = {
-  getUser: async (_, { email }) => {
+  getUser: async (_, { email }, { token }) => {
+    if (!token) throw new Error(NO_TOKEN_ERROR);
     try {
       const user = await Auth.findOne({ email });
       if (!user) {
@@ -29,6 +30,7 @@ module.exports = {
           // eslint-disable-next-line no-underscore-dangle
           { id: user._id, email: user.email, password: user.password }, JWT_SECRET,
         );
+        console.log('TOKEN', token);
         // eslint-disable-next-line no-underscore-dangle
         return { userId: user._id, token };
       }
