@@ -30,7 +30,6 @@ module.exports = {
           // eslint-disable-next-line no-underscore-dangle
           { id: user._id, email: user.email, password: user.password }, JWT_SECRET,
         );
-        console.log('TOKEN', token);
         // eslint-disable-next-line no-underscore-dangle
         return { userId: user._id, token };
       }
