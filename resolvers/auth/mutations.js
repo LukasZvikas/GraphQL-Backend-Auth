@@ -37,6 +37,7 @@ module.exports = {
     }
   },
   resetPass: async (_, { token, newPassword }) => {
+    console.log("TOKEN", token, "new", newPassword)
     try {
       const { id } = await verifyJwt(token, EMAIL_JWT_SECRET);
 
