@@ -1,14 +1,22 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { verifyJwt } = require('../../utilities/jwt');
 const { JWT_SECRET } = require('../../config/keys');
-const { INVALID_CREDENTIALS_ERROR, FETCH_USER_ERROR, NO_TOKEN_ERROR } = require('../../errorTypes');
+const {
+  INVALID_CREDENTIALS_ERROR, FETCH_USER_ERROR, NO_TOKEN_ERROR, EXPIRED_TOKEN,
+} = require('../../errorTypes');
 const Auth = require('../../models/auth');
 
 module.exports = {
-  getUser: async (_, { email }, { token }) => {
+  getUser: async (_, __, { token }) => {
     if (!token) throw new Error(NO_TOKEN_ERROR);
+
+    const userDetails = await verifyJwt(token, JWT_SECRET);
+
+    if (!userDetails) throw new Error(EXPIRED_TOKEN);
+
     try {
-      const user = await Auth.findOne({ email });
+      const user = await Auth.findById(userDetails.id);
       if (!user) {
         throw new Error(INVALID_CREDENTIALS_ERROR);
       } else {
