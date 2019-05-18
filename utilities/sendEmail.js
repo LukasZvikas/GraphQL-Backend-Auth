@@ -12,9 +12,11 @@ module.exports = {
       html: body, // plain text body
     };
 
-    transporter.sendMail(mailOptions, (err, info) => {
-      if (err) console.log(err);
-      else console.log(info);
-    });
+    if (process.env.NODE_ENV !== 'test') {
+      transporter.sendMail(mailOptions, (err, info) => {
+        if (err) console.log(err);
+        else console.log(info);
+      });
+    }
   },
 };

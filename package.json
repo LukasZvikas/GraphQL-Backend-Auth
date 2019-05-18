@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "NODE_ENV=test mocha"
+  },
+  "standard": {
+    "env": [ "mocha" ]
   },
   "author": "",
   "license": "ISC",

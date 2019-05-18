@@ -1,7 +1,7 @@
 const Auth = require('../models/auth');
 const { verifyJwt } = require('../utilities/jwt');
 const { EMAIL_JWT_SECRET } = require('../config/keys');
-const { RESET_LINK_ERROR } = require('../errorTypes');
+const { RESET_LINK_ERROR } = require('../utilities/errorTypes');
 
 
 module.exports = (app) => {

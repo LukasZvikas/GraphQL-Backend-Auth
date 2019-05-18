@@ -9,7 +9,7 @@ const {
   NO_TOKEN_ERROR,
   EXPIRED_TOKEN,
   INVALID_EMAIL_ERROR,
-} = require('../../errorTypes');
+} = require('../../utilities/errorTypes');
 const Auth = require('../../models/auth');
 const resetPassTemplate = require('../../utilities/emailTemplates/resetPass');
 
