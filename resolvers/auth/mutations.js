@@ -22,7 +22,6 @@ module.exports = {
         const savedUser = await newUser.save();
 
         const emailToken = jwt.sign(
-          // eslint-disable-next-line no-underscore-dangle
           { id: newUser._id, email }, EMAIL_JWT_SECRET,
         );
 
@@ -37,7 +36,6 @@ module.exports = {
     }
   },
   resetPass: async (_, { token, newPassword }) => {
-    console.log("TOKEN", token, "new", newPassword)
     try {
       const { id } = await verifyJwt(token, EMAIL_JWT_SECRET);
 
