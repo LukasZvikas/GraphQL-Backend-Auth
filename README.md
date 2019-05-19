@@ -1,5 +1,9 @@
 # Authentication backend starter with GraphQL (Apollo)
 
+## Project description
+
+A backend authentication starter that currently includes features such as Sign up, Verify user, Login, Get user and Reset password. Technologies used are apollo-server-express, MongoDB, mongoose, graphql, nodemailer, jsonwebtoken. For testing, Mocha framework is used.
+
 ## Project setup
 ```
 npm install
@@ -12,11 +16,16 @@ node index.js
 
 ### Development database setup
 
-Requires two different database environments. In config/dev.js, set MONGO_KEY_DEV to development database URL.
+Requires two different database environments. In config/dev.js, set MONGO_KEY_DEV to development database URL. (MLab suggested)
 
 ### Testing database setup
 
 In order for tests to work, a testing database URL has to be provided for MONGO_KEY_TEST in config/dev.js file.
+
+### Run tests
+```
+npm run test
+```
 
 ### Emails
 
